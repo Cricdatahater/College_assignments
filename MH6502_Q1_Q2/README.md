@@ -3,19 +3,30 @@
 Finite-difference boundary-value problems and SVD image approximation.
 
 - `Q1_Q2_Notebook.ipynb`: current notebook, preserved unchanged.
-- `Handwritten_Solutions.md`: derivations and original sample-image results.
+- `Handwritten_Solutions.md`: step-by-step derivations and original sample-image results.
 - `solve_q1_q2.py`: runnable Python script.
-- `results/`: latest plots and tables, using the supplied replacement photograph for Question 2.
+- `results/*.csv`: numerical tables; the SVD table uses the user's replacement image.
 
 ## Run
 
-From this folder:
+Open a terminal in this folder:
 
 ```sh
 python -m pip install -r requirements.txt
-python solve_q1_q2.py --image "results/jesus death img.jpg"
+python solve_q1_q2.py
+jupyter notebook Q1_Q2_Notebook.ipynb
 ```
 
-To use the same image in the notebook, change `q2_results = question2()` to `q2_results = question2("results/jesus death img.jpg")` before running its code cell. Open Jupyter with this folder as the working directory. The notebook defaults to Matplotlib's Grace Hopper sample; its written SVD table describes that original sample. The current CSV files and plots describe the replacement image (rank 50 relative error approximately 2.98%). Running either example replaces generated files in `results/`.
+The default example uses Matplotlib's bundled Grace Hopper photograph. Running generates the figures referenced by the notebook and notes in `results/`. Image files are not included in this repository.
 
-The error formula is checked against direct Frobenius errors at every rank. Storage comparisons count scalars, not encoded image-file bytes.
+To use your own local image:
+
+```sh
+python solve_q1_q2.py --image "path/to/image.jpg"
+```
+
+In the notebook, change `q2_results = question2()` to `q2_results = question2("path/to/image.jpg")`.
+
+The written SVD table describes the original sample. The committed SVD CSV describes the replacement image (rank 50 relative error approximately 2.98%). Running the example replaces the generated tables and figures. Open Jupyter with this assignment folder as the working directory.
+
+Storage comparisons count scalars, not encoded file bytes.
